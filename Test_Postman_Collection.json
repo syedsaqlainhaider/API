@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "5457860b-6790-45df-84c4-7810a3b69a6a",
+		"name": "BookReviews",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9429988"
+	},
+	"item": [
+		{
+			"name": "api/book",
+			"item": [
+				{
+					"name": "Create a new BookReviews.Book with New ISBN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Enter new BookReviews.Book ISBN\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isbn\": 9,\n  \"title\": \"in dolore non commodo\",\n  \"author\": \"ullamco incidid\",\n  \"review\": \"amet\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fw-qainterview-books-app.azurewebsites.net/api/book",
+							"protocol": "https",
+							"host": [
+								"fw-qainterview-books-app",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an old BookReviews.Book with Old ISBN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Enter Old BookReviews.Book ISBN\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([409]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isbn\": 7,\n  \"title\": \"in dolore non commodo\",\n  \"author\": \"ullamco incidid\",\n  \"review\": \"amet\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fw-qainterview-books-app.azurewebsites.net/api/book",
+							"protocol": "https",
+							"host": [
+								"fw-qainterview-books-app",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Title/Author/Review passed as a String",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Book Title, Author and Review are passed as a String\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"title\", \"author\", \"review\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isbn\": 9,\n  \"title\": \"in dolore non commodo\",\n  \"author\": \"ullamco incidid\",\n  \"review\": \"amet\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fw-qainterview-books-app.azurewebsites.net/api/book",
+							"protocol": "https",
+							"host": [
+								"fw-qainterview-books-app",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find details of a BookReviews.Book with correct ISBN number.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Correct ISBN number\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Successful GET request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://fw-qainterview-books-app.azurewebsites.net/api/book/7",
+							"protocol": "https",
+							"host": [
+								"fw-qainterview-books-app",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"book",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find details of a BookReviews.Book with incorrect ISBN number.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Incorrect ISBN Number\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Successful GET request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://fw-qainterview-books-app.azurewebsites.net/api/book/15",
+							"protocol": "https",
+							"host": [
+								"fw-qainterview-books-app",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"book",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find details of a BookReviews.Book with blank ISBN field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Blank ISBN Number field\", function () {",
+									"    pm.response.to.have.status(405);",
+									"});",
+									"pm.test(\"Successful GET request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([405]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://fw-qainterview-books-app.azurewebsites.net/api/book/",
+							"protocol": "https",
+							"host": [
+								"fw-qainterview-books-app",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"book",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find details of a BookReviews.Book with alphabet in ISBN field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Alphabet in ISBN Number field\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"Successful GET request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://fw-qainterview-books-app.azurewebsites.net/api/book/a",
+							"protocol": "https",
+							"host": [
+								"fw-qainterview-books-app",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"book",
+								"a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
